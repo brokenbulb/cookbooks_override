@@ -1,0 +1,30 @@
+{
+  "name": "bb_php",
+  "description": "Installs/Configures bb_php",
+  "long_description": "Description\n===========\nConfigures BB PHP Environment\n\nRequirements\n============\nWorking CentOS 5 SoftLayer image\n\nAttributes\n==========\n\nUsage\n=====\n\n",
+  "maintainer": "Broken Bulb Studios",
+  "maintainer_email": "matt@brokenbulbstudios.com",
+  "license": "All rights reserved",
+  "platforms": {
+  },
+  "dependencies": {
+  },
+  "recommendations": {
+  },
+  "suggestions": {
+  },
+  "conflicting": {
+  },
+  "providing": {
+  },
+  "replacing": {
+  },
+  "attributes": {
+  },
+  "groupings": {
+  },
+  "recipes": {
+    "bb_php::default": "Configures BB PHP Environment"
+  },
+  "version": "0.0.1"
+}

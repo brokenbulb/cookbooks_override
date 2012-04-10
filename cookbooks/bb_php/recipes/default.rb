@@ -17,7 +17,7 @@ Dir.glob(packages).each do |p|
   package p do
     not_if { type == "deb" }
     source p
-	options "--nodeps"
+	options "--skip-broken --nogpgcheck"
     action :install
   end
 end

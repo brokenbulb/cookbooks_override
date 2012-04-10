@@ -21,3 +21,13 @@ Dir.glob(packages).each do |p|
     action :install
   end
 end
+
+yum_package "htop" do
+  arch "x86_64"
+end
+
+execute "peclmemcached" do
+  command "pecl install memcached"
+  creates "/usr/lib64/php/modules/memcached.so"
+  action :run
+end

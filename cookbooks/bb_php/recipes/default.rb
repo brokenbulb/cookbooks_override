@@ -38,3 +38,21 @@ execute "copycouchbase" do
   command "mv " + filename + " /usr/lib64/php/modules/"
   action :run
 end
+
+execute "createphpinimemcached" do
+  creates "/etc/php.d/memcached.ini"
+  command "echo 'extension=memcached.so' >> /etc/php.d/memcached.ini"
+end
+
+# Call the ini file z_couchbase.ini to ensure it gets processed last, after json.ini
+execute "createphpinicouchbase" do
+  creates "/etc/php.d/z_couchbase.ini"
+  command "echo 'extension=couchbase.so' >> /etc/php.d/z_couchbase.ini"
+end
+
+# Restart httpd
+service "httpd" do
+  supports :restart => true
+  action :start
+end
+

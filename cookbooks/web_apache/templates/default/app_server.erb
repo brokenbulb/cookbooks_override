@@ -39,7 +39,7 @@
   RewriteCond %{SCRIPT_FILENAME} !^(.+).(gif|png|jpg|css|js|swf)$
   RewriteRule ^.*$ /system/maintenance.html [L]
 
-  RewriteBase /
+  #RewriteBase /
   RewriteCond %{REQUEST_FILENAME} !status-2\.2
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d

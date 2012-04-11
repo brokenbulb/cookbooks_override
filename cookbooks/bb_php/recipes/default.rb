@@ -35,6 +35,6 @@ end
 execute "copycouchbase" do
   filename = ::File.join(::File.dirname(__FILE__), "..", "files", "centos-misc", "couchbase.so")
   creates "/usr/lib64/php/modules/couchbase.so"
-  command "mv " + filename + "/usr/lib64/php/modules/"
+  command "mv " + filename + " /usr/lib64/php/modules/"
   action :run
 end

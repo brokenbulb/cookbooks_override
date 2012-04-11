@@ -26,9 +26,17 @@ yum_package "htop" do
   arch "x86_64"
 end
 
-execute "peclmemcached" do
-  command "pecl install memcached"
+# We're going to use the couchbase version which includes memcached_touch
+#execute "peclmemcached" do
+#  command "pecl install memcached"
+#  creates "/usr/lib64/php/modules/memcached.so"
+#  action :run
+#end
+
+execute "copymemcached" do
+  filename = ::File.join(::File.dirname(__FILE__), "..", "files", "centos-misc", "memcached.so")
   creates "/usr/lib64/php/modules/memcached.so"
+  command "mv " + filename + " /usr/lib64/php/modules/"
   action :run
 end
 

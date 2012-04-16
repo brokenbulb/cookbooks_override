@@ -90,3 +90,10 @@ attribute "web_apache/application_name",
   :required => "optional",
   :default => "myapp",
   :recipes => all_recipes
+
+attribute "web_apache/server_name",
+  :display_name => "Server Name",
+  :description => "Fully qualified domain name of the app server used to define the virtual host",
+  :required => "optional",
+  :default => "localhost",
+  :recipes => all_recipes

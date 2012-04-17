@@ -21,9 +21,21 @@
     AllowOverride None
     Order allow,deny
     Allow from all
+    
+    # BB Rewrites
+    RewriteCond %{REQUEST_FILENAME} !status-2\.2
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !game\/.*
+    RewriteCond %{REQUEST_FILENAME} !img\/.*
+    RewriteCond %{REQUEST_FILENAME} !js\/.*
+    RewriteRule ^.*$ /m/app/core.php [L]
+
+    DirectoryIndex /m/app/core.php index.php
+
   </Directory>
 
-  # <%= node[:web_apache][:server_name] %>
+  # Testing: <%= node[:web_apache][:server_name] %>
   RewriteEngine On
   # Uncomment for rewrite debugging
   #RewriteLog <%= node[:apache][:log_dir] %>/http_rewrite_log
@@ -39,6 +51,8 @@
   RewriteCond %{SCRIPT_FILENAME} !/system/maintenance.html
   RewriteCond %{SCRIPT_FILENAME} !^(.+).(gif|png|jpg|css|js|swf)$
   RewriteRule ^.*$ /system/maintenance.html [L]
+
+
 
   # Setup the logs in the appropriate directory
   CustomLog <%= node[:apache][:log_dir] %>/access_log combined

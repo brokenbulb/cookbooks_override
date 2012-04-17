@@ -33,6 +33,12 @@ end
 #  action :run
 #end
 
+execute "pearlog" do
+  command "pear install Log"
+  creates "/usr/share/pear/Log.php"
+  action :run
+end
+
 execute "copymemcached" do
   filename = ::File.join(::File.dirname(__FILE__), "..", "files", "centos-misc", "memcached.so")
   creates "/usr/lib64/php/modules/memcached.so"

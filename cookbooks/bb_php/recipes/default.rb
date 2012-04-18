@@ -56,12 +56,27 @@ end
 execute "createphpinimemcached" do
   creates "/etc/php.d/memcached.ini"
   command "echo 'extension=memcached.so' >> /etc/php.d/memcached.ini"
+  action :run
 end
 
 # Call the ini file z_couchbase.ini to ensure it gets processed last, after json.ini
 execute "createphpinicouchbase" do
   creates "/etc/php.d/z_couchbase.ini"
   command "echo 'extension=couchbase.so' >> /etc/php.d/z_couchbase.ini"
+  action :run
+end
+
+directory "/var/log/superheroes" do
+  owner "apache"
+  group "apache"
+  mode "0755"
+  action :create
+end
+
+execute "touchgenerallog" do
+  creates "/var/log/superheroes/general.log"
+  command "touch /var/log/superheroes/general.log"
+  action :run
 end
 
 # Restart httpd

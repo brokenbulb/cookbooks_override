@@ -23,6 +23,7 @@
     Allow from all
     
     # BB Rewrites
+	RewriteEngine On
 	RewriteBase /
     RewriteCond %{REQUEST_FILENAME} !status-2\.2
     RewriteCond %{REQUEST_FILENAME} !-f
@@ -36,8 +37,6 @@
 
   </Directory>
 
-  # Testing: <%= node[:web_apache][:server_name] %>
-  RewriteEngine On
   # Uncomment for rewrite debugging
   #RewriteLog <%= node[:apache][:log_dir] %>/http_rewrite_log
   #RewriteLogLevel 9
@@ -48,10 +47,10 @@
 
   # Redirects to a maintenance page if the specified file below exists
   # ...but it still allows images to be served
-  RewriteCond %{DOCUMENT_ROOT}/system/maintenance.html -f
-  RewriteCond %{SCRIPT_FILENAME} !/system/maintenance.html
-  RewriteCond %{SCRIPT_FILENAME} !^(.+).(gif|png|jpg|css|js|swf)$
-  RewriteRule ^.*$ /system/maintenance.html [L]
+  #RewriteCond %{DOCUMENT_ROOT}/system/maintenance.html -f
+  #RewriteCond %{SCRIPT_FILENAME} !/system/maintenance.html
+  #RewriteCond %{SCRIPT_FILENAME} !^(.+).(gif|png|jpg|css|js|swf)$
+  #RewriteRule ^.*$ /system/maintenance.html [L]
 
   # Setup the logs in the appropriate directory
   CustomLog <%= node[:apache][:log_dir] %>/access_log combined

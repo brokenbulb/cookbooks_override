@@ -78,10 +78,11 @@ end
 
 %w{general.log sql.log}.each do |f|
   file "/var/log/superheroes/#{f}" do
-  owner "apache"
-  group "apache"
-  mode "0755"
-  action :create
+    owner "apache"
+    group "apache"
+    mode "0755"
+    action :create
+  end
 end
 
 # Restart httpd

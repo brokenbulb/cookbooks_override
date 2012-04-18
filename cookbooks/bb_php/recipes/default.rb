@@ -66,17 +66,22 @@ execute "createphpinicouchbase" do
   action :run
 end
 
+
+# Create superheroes log files
 directory "/var/log/superheroes" do
   owner "apache"
   group "apache"
   mode "0755"
+  recursive true
   action :create
 end
 
-execute "touchgenerallog" do
-  creates "/var/log/superheroes/general.log"
-  command "touch /var/log/superheroes/general.log"
-  action :run
+%w{general.log sql.log}.each do |f|
+  file "/var/log/superheroes/#{f}" do
+  owner "apache"
+  group "apache"
+  mode "0755"
+  action :create
 end
 
 # Restart httpd

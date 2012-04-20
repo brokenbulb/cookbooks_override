@@ -79,6 +79,12 @@ execute "createphpiniigbinary" do
 end
 
 
+execute "configure_php_ini" do
+  command "sed -i 's/short_open_tag = Off/short_open_tag = On/g'"
+  action :run
+end
+
+
 # Create superheroes log files
 directory "/var/log/superheroes" do
   owner "apache"

@@ -16,6 +16,11 @@
     Deny from all
   </DirectoryMatch>
 
+  <Location /server-status>
+  	Order allow,deny
+	Allow from 127.0.0.1
+	SetHandler server-status
+  </Location>
   <Directory <%= @params[:docroot] %>>
     Options FollowSymLinks
     AllowOverride None
@@ -25,7 +30,7 @@
     # BB Rewrites
 	RewriteEngine On
 	RewriteBase /
-    RewriteCond %{REQUEST_FILENAME} !status-2\.2
+    RewriteCond %{REQUEST_FILENAME} !server-status
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !game\/.*

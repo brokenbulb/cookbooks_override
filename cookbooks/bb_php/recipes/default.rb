@@ -66,6 +66,18 @@ execute "createphpinicouchbase" do
   action :run
 end
 
+execute "pecligbinary" do
+  command "pecl install igbinary"
+  creates "/usr/lib64/php/modules/igbinary.so"
+  action :run
+end
+
+execute "createphpiniigbinary" do
+  creates "/etc/php.d/igbinary.ini"
+  command "echo 'extension=igbinary.so' >> /etc/php.d/igbinary.ini"
+  action :run
+end
+
 
 # Create superheroes log files
 directory "/var/log/superheroes" do

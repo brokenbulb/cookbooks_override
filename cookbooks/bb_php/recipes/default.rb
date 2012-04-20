@@ -80,7 +80,7 @@ end
 
 
 execute "configure_php_ini" do
-  command "sed -i 's/short_open_tag = Off/short_open_tag = On/g'"
+  command "sed -i 's/short_open_tag = Off/short_open_tag = On/g' /etc/php.ini"
   action :run
 end
 

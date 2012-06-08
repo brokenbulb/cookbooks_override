@@ -54,7 +54,7 @@ execute "copycouchbase" do
 end
 
 execute "copyvirtualhost" do
-  filename = ::File.join(::File.dirname(__FILE__), "..", "files", "config", "superheroes_current.conf")
+  filename = ::File.join(::File.dirname(__FILE__), "..", "files", "config", "httpd", "superheroes_current.conf")
   command "cp -f " + filename + " /etc/httpd/sites-available/"
 end
 

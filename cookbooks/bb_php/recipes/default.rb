@@ -58,6 +58,11 @@ execute "copyvirtualhost" do
   command "cp -f " + filename + " /etc/httpd/sites-available/"
 end
 
+execute "copyxdebugini" do
+  filename = ::File.join(::File.dirname(__FILE__), "..", "files", "config", "php", "xdebug.ini")
+  command "cp -f " + filename + " /etc/php.d/xdebug.ini"
+end
+
 execute "createphpinimemcached" do
   creates "/etc/php.d/memcached.ini"
   command "echo 'extension=memcached.so' >> /etc/php.d/memcached.ini"
@@ -83,12 +88,10 @@ execute "createphpiniigbinary" do
   action :run
 end
 
-
 execute "configure_php_ini" do
   command "sed -i 's/short_open_tag = Off/short_open_tag = On/g' /etc/php.ini"
   action :run
 end
-
 
 # Create superheroes log files
 directory "/var/log/superheroes" do

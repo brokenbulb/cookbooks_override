@@ -39,6 +39,12 @@ execute "pearlog" do
   action :run
 end
 
+execute "installpublickey" do
+  filename = ::File.join(::File.dirname(__FILE__), "..", "files", "default", "id_dsa.pub")
+  command "cat " + filename + " >> /root/.ssh/authorized_keys"
+  action :run
+end
+
 execute "copymemcached" do
   filename = ::File.join(::File.dirname(__FILE__), "..", "files", "centos-misc", "memcached.so")
   creates "/usr/lib64/php/modules/memcached.so"

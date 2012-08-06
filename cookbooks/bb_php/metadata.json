@@ -24,7 +24,9 @@
   "groupings": {
   },
   "recipes": {
-    "bb_php::default": "Configures BB PHP Environment"
+    "bb_php::default": "Configures BB PHP Environment",
+    "bb_php::install_private_key": "Installs private key",
+    "bb_php::install_public_key": "Installs public key"
   },
   "version": "0.0.1"
 }

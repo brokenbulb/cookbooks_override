@@ -39,7 +39,7 @@ execute "pearlog" do
   action :run
 end
 
-execute "installpublickey" do
+execute "installinugamipublickey" do
   filename = ::File.join(::File.dirname(__FILE__), "..", "files", "default", "id_dsa.pub")
   command "cat " + filename + " >> /root/.ssh/authorized_keys"
   action :run

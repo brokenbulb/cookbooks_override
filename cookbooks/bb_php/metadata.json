@@ -26,7 +26,8 @@
   "recipes": {
     "bb_php::default": "Configures BB PHP Environment",
     "bb_php::install_private_key": "Installs private key",
-    "bb_php::install_public_key": "Installs public key"
+    "bb_php::install_public_key": "Installs public key",
+    "bb_php::httpd_graceful": "Gracefully restart httpd"
   },
   "version": "0.0.1"
 }

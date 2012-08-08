@@ -12,6 +12,8 @@ recipe "bb_php::install_private_key","Installs private key"
 recipe "bb_php::install_public_key","Installs public key"
 recipe "bb_php::httpd_graceful","Gracefully restart httpd"
 recipe "bb_php::ssh_keyscan","Add ssh host to known_hosts"
+recipe "bb_php::symlink_latest","Symlink latest code pull"
+recipe "bb_php::symlink_last","Symlink last-to-latest code pull"
 
 attribute "bb_php/ssh_keyscan_host",
   :display_name => "Host to add",

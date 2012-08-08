@@ -42,7 +42,9 @@
     "bb_php::install_private_key": "Installs private key",
     "bb_php::install_public_key": "Installs public key",
     "bb_php::httpd_graceful": "Gracefully restart httpd",
-    "bb_php::ssh_keyscan": "Add ssh host to known_hosts"
+    "bb_php::ssh_keyscan": "Add ssh host to known_hosts",
+    "bb_php::symlink_latest": "Symlink latest code pull",
+    "bb_php::symlink_last": "Symlink last-to-latest code pull"
   },
   "version": "0.0.1"
 }

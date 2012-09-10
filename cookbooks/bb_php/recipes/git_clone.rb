@@ -1,12 +1,12 @@
 #
 # Cookbook Name:: bb_php
-# Recipe:: symlink_latest 
+# Recipe:: git_clone 
 #
 # Copyright 2012, Broken Bulb Studios
 #
 # All rights reserved - Do Not Redistribute
 #
-# Symlink latest release
+# Clone git repo 
 #
 
 execute "git_clone" do

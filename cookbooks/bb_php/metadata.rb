@@ -15,6 +15,7 @@ recipe "bb_php::ssh_keyscan","Add ssh host to known_hosts"
 recipe "bb_php::symlink_latest","Symlink latest code pull"
 recipe "bb_php::symlink_last","Symlink last-to-latest code pull"
 recipe "bb_php::git_clone","Just clone repository to a fresh directory"
+recipe "bb_php::install_ejabberd","Install ejabberd"
 
 attribute "bb_php/ssh_keyscan_host",
   :display_name => "Host to add",

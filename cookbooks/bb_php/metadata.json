@@ -8,6 +8,7 @@
   "platforms": {
   },
   "dependencies": {
+    "repo": ">= 0.0.0"
   },
   "recommendations": {
   },
@@ -43,7 +44,8 @@
     "bb_php::httpd_graceful": "Gracefully restart httpd",
     "bb_php::ssh_keyscan": "Add ssh host to known_hosts",
     "bb_php::symlink_latest": "Symlink latest code pull",
-    "bb_php::symlink_last": "Symlink last-to-latest code pull"
+    "bb_php::symlink_last": "Symlink last-to-latest code pull",
+    "bb_php::git_clone": "Clone the Superhero repository"
   },
-  "version": "0.0.1"
+  "version": "0.0.2"
 }

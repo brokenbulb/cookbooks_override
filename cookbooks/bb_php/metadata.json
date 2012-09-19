@@ -45,7 +45,7 @@
     "bb_php::ssh_keyscan": "Add ssh host to known_hosts",
     "bb_php::symlink_latest": "Symlink latest code pull",
     "bb_php::symlink_last": "Symlink last-to-latest code pull",
-    "bb_php::git_clone": "Clone the Superhero repository"
+    "bb_php::git_clone": "Just clone repository to a fresh directory"
   },
   "version": "0.0.2"
 }

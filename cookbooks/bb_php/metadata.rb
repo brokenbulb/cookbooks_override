@@ -14,7 +14,7 @@ recipe "bb_php::httpd_graceful","Gracefully restart httpd"
 recipe "bb_php::ssh_keyscan","Add ssh host to known_hosts"
 recipe "bb_php::symlink_latest","Symlink latest code pull"
 recipe "bb_php::symlink_last","Symlink last-to-latest code pull"
-recipe "bb_php::git_clone","Clone the Superhero repository"
+recipe "bb_php::git_clone","Just clone repository to a fresh directory"
 
 attribute "bb_php/ssh_keyscan_host",
   :display_name => "Host to add",

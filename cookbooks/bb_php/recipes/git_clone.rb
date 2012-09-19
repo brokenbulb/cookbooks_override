@@ -15,7 +15,8 @@ keyfile = nil
 ssh_key = node[:repo][:default][:git_ssh_key]
 ssh_wrapper = ssh_key + ".sh"
 reponame = node[:repo][:default][:repository]
-dest = "/home/capistrano_repo/releases/" + ::Time.now.to_i
+curtime = ::Time.now.to_i
+dest = "/home/capistrano_repo/releases/#{curtime}"
 keyfile = "/tmp/gitkey"
 
 log "  Running BB git clone on #{reponame} to #{dest}"

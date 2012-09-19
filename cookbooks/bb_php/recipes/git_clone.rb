@@ -28,11 +28,12 @@ directory dest do
 	action :create
 end
 
-bash 'git_clone' do
-    code <<-EOH
-        git clone #{reponame} #{dest} 
-    EOH
+execute 'git_clone' do
+	command "git clone #{reponame} #{dest}"
+	action :run
 end
+
+log "  BB git clone - remove SSH key"
 
 RightScale::Repo::Ssh_key.new.delete
 

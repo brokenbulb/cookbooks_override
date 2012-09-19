@@ -11,23 +11,25 @@
 
 rightscale_marker :begin
 
-keyfile = nil
+ssh_key_file = nil
 ssh_key = node[:repo][:default][:git_ssh_key]
-ssh_wrapper = ssh_key + ".sh"
 reponame = node[:repo][:default][:repository]
 curtime = ::Time.now.to_i
 dest = "/home/capistrano_repo/releases/#{curtime}"
-keyfile = "/tmp/gitkey"
+ssh_key_file = "/tmp/gitkey"
+ssh_wrapper = "/tmp/git-ssh-wrapper.sh"
 
 log "  Running BB git clone on #{reponame} to #{dest}"
 
 if "#{ssh_key}" != ""
+	file = File.new(ssh_key_file, "w")
+	file.write(ssh_key)
+	file.close
     bash 'create_temp_git_ssh_key' do
         code <<-EOH
-            echo -n '#{ssh_key}' > #{keyfile}
-            chmod 700 #{keyfile}
-            echo 'exec ssh -oStrictHostKeyChecking=no -i #{keyfile} "$@"' > #{ssh_wrapper}
-            chmod +x #{keyfile}.sh
+            chmod 700 #{ssh_key_file}
+            echo 'exec ssh -oStrictHostKeyChecking=no -i #{ssh_key_file} "$@"' > #{ssh_wrapper}
+            chmod +x #{ssh_key_file}
         EOH
     end
 end
@@ -40,10 +42,10 @@ bash 'git_clone' do
 end
 
 # delete SSH key & clear GIT_SSH
-if keyfile != nil
+if ssh_key_file != nil
     bash 'delete_temp_git_ssh_key' do
         code <<-EOH
-            rm -f #{keyfile}
+            rm -f #{ssh_key_file}
             rm -f #{ssh_wrapper}
         EOH
     end

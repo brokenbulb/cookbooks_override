@@ -25,20 +25,33 @@ if "#{ssh_key}" != ""
 	file = File.new(ssh_key_file, "w")
 	file.write(ssh_key)
 	file.close
-	log "chmod 700 #{ssh_key_file}"
-	log "exec ssh -oStrictHostKeyChecking=no -i #{ssh_key_file} $@ > #{ssh_wrapper}"
-    bash 'create_temp_git_ssh_key' do
-        code <<-EOH
-            chmod 700 #{ssh_key_file}
-            echo 'exec ssh -oStrictHostKeyChecking=no -i #{ssh_key_file} "$@"' > #{ssh_wrapper}
-            chmod +x #{ssh_key_file}
-        EOH
-    end
+	
+	file ssh_wrapper do
+		mode "0711"
+		owner "root"
+		group "root"
+		content "exec ssh -oStrictHostKeyChecking=no -i #{ssh_key_file} \"$@\""
+		action :create_if_missing
+	end
+	
+	file ssh_key_file do
+		mode "0700"
+		owner "root"
+		group "root"
+		content ssh_key
+		action :create_if_missing
+	end
+
+	directory dest do
+		owner "apache"
+		group "apache"
+		mode "0700"
+		action :create
+	end
 end
 
 bash 'git_clone' do
     code <<-EOH
-        mkdir -p #{dest} && cd #{dest}
         git clone #{reponame} #{dest} 
     EOH
 end
@@ -46,10 +59,11 @@ end
 # delete SSH key & clear GIT_SSH
 if ssh_key_file != nil
     bash 'delete_temp_git_ssh_key' do
-        code <<-EOH
-            rm -f #{ssh_key_file}
-            rm -f #{ssh_wrapper}
-        EOH
+		%w{ssh_key_file ssh_wrapper}.each do |f|
+			file dir do	
+				action :delete
+			end
+		end
     end
 end
 	

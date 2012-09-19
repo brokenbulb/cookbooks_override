@@ -14,7 +14,7 @@ rightscale_marker :begin
 ssh_key_file = nil
 ssh_key = node[:repo][:default][:git_ssh_key]
 reponame = node[:repo][:default][:repository]
-dest = "/home/capistrano_repo/releases/#{curtime}" + ::Time.now.strftime("%Y%m%d%H%M") 
+dest = "/home/capistrano_repo/releases/" + ::Time.now.strftime("%Y%m%d%H%M") 
 
 log "  Running BB git clone on #{reponame} to #{dest}"
 

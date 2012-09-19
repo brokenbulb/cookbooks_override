@@ -22,32 +22,14 @@ ssh_wrapper = "/tmp/git-ssh-wrapper.sh"
 log "  Running BB git clone on #{reponame} to #{dest}"
 
 if "#{ssh_key}" != ""
-	file = File.new(ssh_key_file, "w")
-	file.write(ssh_key)
-	file.close
-	
-	file ssh_wrapper do
-		mode "0711"
-		owner "root"
-		group "root"
-		content "exec ssh -oStrictHostKeyChecking=no -i #{ssh_key_file} \"$@\""
-		action :create_if_missing
-	end
-	
-	file ssh_key_file do
-		mode "0700"
-		owner "root"
-		group "root"
-		content ssh_key
-		action :create_if_missing
-	end
+	Repo::Ssh_key.new.create(ssh_key)
+end
 
-	directory dest do
-		owner "apache"
-		group "apache"
-		mode "0700"
-		action :create
-	end
+directory dest do
+	owner "apache"
+	group "apache"
+	mode "0700"
+	action :create
 end
 
 bash 'git_clone' do
@@ -56,14 +38,8 @@ bash 'git_clone' do
     EOH
 end
 
-if ssh_key_file != nil
-	%w{ssh_key_file ssh_wrapper}.each do |f|
-		file f do	
-			action :delete
-		end
-	end
-end
-	
+#Repo::Ssh_key.new.delete(ssh_key)
+
 log "  BB git clone done!" 
 
 rightscale_marker :end

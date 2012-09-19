@@ -35,7 +35,6 @@ end
 
 ruby_block 'cleanup' do
 	block do
-		log "  BB git clone - remove SSH key"
 		RightScale::Repo::Ssh_key.new.delete
 	end
 end

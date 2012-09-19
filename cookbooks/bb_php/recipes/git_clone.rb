@@ -28,10 +28,11 @@ execute "git_clone" do
   end
 
   bash 'git_clone' do
-    NEWDIR=/home/capistrano_repo/releases/`date +%s`
-    mkdir -p $NEWDIR
-    cd $NEWDIR
-    git clone #{reponame} $NEWDIR
+    dest = "/home/capistrano_repo/releases/" + ::Time.now.to_i
+    code <<-EOH
+        mkdir -p #{dest} && cd #{dest}
+        git clone #{reponame} #{dest} 
+    EOH
   end
 
   # delete SSH key & clear GIT_SSH

@@ -16,8 +16,6 @@ ssh_key = node[:repo][:default][:git_ssh_key]
 reponame = node[:repo][:default][:repository]
 curtime = ::Time.now.to_i
 dest = "/home/capistrano_repo/releases/#{curtime}"
-ssh_key_file = "/tmp/gitkey"
-ssh_wrapper = "/tmp/git-ssh-wrapper.sh"
 
 log "  Running BB git clone on #{reponame} to #{dest}"
 
@@ -38,7 +36,7 @@ bash 'git_clone' do
     EOH
 end
 
-#RightScale::Repo::Ssh_key.new.delete(ssh_key)
+RightScale::Repo::Ssh_key.new.delete(ssh_key)
 
 log "  BB git clone done!" 
 

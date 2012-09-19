@@ -56,15 +56,12 @@ bash 'git_clone' do
     EOH
 end
 
-# delete SSH key & clear GIT_SSH
 if ssh_key_file != nil
-    bash 'delete_temp_git_ssh_key' do
-		%w{ssh_key_file ssh_wrapper}.each do |f|
-			file f do	
-				action :delete
-			end
+	%w{ssh_key_file ssh_wrapper}.each do |f|
+		file f do	
+			action :delete
 		end
-    end
+	end
 end
 	
 log "  BB git clone done!" 

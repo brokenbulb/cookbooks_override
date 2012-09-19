@@ -33,10 +33,11 @@ execute 'git_clone' do
 	action :run
 end
 
-log "  BB git clone - remove SSH key"
-
-RightScale::Repo::Ssh_key.new.delete
-
-log "  BB git clone done!" 
+ruby_block 'cleanup' do
+	block do
+		log "  BB git clone - remove SSH key"
+		RightScale::Repo::Ssh_key.new.delete
+	end
+end
 
 rightscale_marker :end

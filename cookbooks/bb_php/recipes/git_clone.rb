@@ -25,9 +25,9 @@ if "#{ssh_key}" != ""
 	file = File.new(ssh_key_file, "w")
 	file.write(ssh_key)
 	file.close
+	log "chmod 700 #{ssh_key_file}"
+	log "exec ssh -oStrictHostKeyChecking=no -i #{ssh_key_file} $@ > #{ssh_wrapper}"
     bash 'create_temp_git_ssh_key' do
-        log "chmod 700 #{ssh_key_file}"
-        log "exec ssh -oStrictHostKeyChecking=no -i #{ssh_key_file} $@ > #{ssh_wrapper}"
         code <<-EOH
             chmod 700 #{ssh_key_file}
             echo 'exec ssh -oStrictHostKeyChecking=no -i #{ssh_key_file} "$@"' > #{ssh_wrapper}

@@ -22,7 +22,7 @@ ssh_wrapper = "/tmp/git-ssh-wrapper.sh"
 log "  Running BB git clone on #{reponame} to #{dest}"
 
 if "#{ssh_key}" != ""
-	Repo::Ssh_key.new.create(ssh_key)
+	RightScale::Repo::Ssh_key.new.create(ssh_key)
 end
 
 directory dest do
@@ -38,7 +38,7 @@ bash 'git_clone' do
     EOH
 end
 
-#Repo::Ssh_key.new.delete(ssh_key)
+#RightScale::Repo::Ssh_key.new.delete(ssh_key)
 
 log "  BB git clone done!" 
 

@@ -60,7 +60,7 @@ end
 if ssh_key_file != nil
     bash 'delete_temp_git_ssh_key' do
 		%w{ssh_key_file ssh_wrapper}.each do |f|
-			file dir do	
+			file f do	
 				action :delete
 			end
 		end

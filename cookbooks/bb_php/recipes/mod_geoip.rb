@@ -3,11 +3,11 @@ rightscale_marker :begin
 include_recipe "apache2"
 
 if platform?("redhat", "centos", "scientific", "fedora")
-    package "geoip" do
-        package_name "geoip"
-        action :install
-        notifies :run, resources(:execute => "generate-module-list"), :immediately
-    end
+#    package "geoip" do
+#        package_name "geoip"
+#        action :install
+#        notifies :run, resources(:execute => "generate-module-list"), :immediately
+#    end
     
 #    file "#{node[:apache][:dir]}/conf.d/geoip.conf" do
 #        action :delete

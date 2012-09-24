@@ -28,6 +28,10 @@ if platform?("redhat", "centos", "scientific", "fedora")
 #    end
 end
 
-apache_module "geoip"
+apache_module "geoip" do
+	filename "geoip.so"
+	name "geoip"
+	conf true
+end
 
 rightscale_marker :end

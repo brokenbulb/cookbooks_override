@@ -28,7 +28,7 @@ if platform?("redhat", "centos", "scientific", "fedora")
 #    end
 end
 
-apache_module "mod_geoip" do
+apache_module "geoip" do
     conf true
 end
 

@@ -9,10 +9,10 @@ if platform?("redhat", "centos", "scientific", "fedora")
         notifies :run, resources(:execute => "generate-module-list"), :immediately
     end
     
-    file "#{node[:apache][:dir]}/conf.d/geoip.conf" do
-        action :delete
-        backup false
-    end
+#    file "#{node[:apache][:dir]}/conf.d/geoip.conf" do
+#        action :delete
+#        backup false
+#    end
    
 	execute "copygeoipdat" do
 		filename = ::File.join(::File.dirname(__FILE__), "..", "files", "centos-misc", "GeoIP.dat")
@@ -21,11 +21,11 @@ if platform?("redhat", "centos", "scientific", "fedora")
 		action :run
 	end
  
-    template "#{node[:apache][:dir]}/geoip.conf" do
-        source "geoip.conf.erb"
-        notifies :restart, resources(:service => "apache2")
-        mode 0644
-    end
+#    template "#{node[:apache][:dir]}/geoip.conf" do
+#        source "geoip.conf.erb"
+#        notifies :restart, resources(:service => "apache2")
+#        mode 0644
+#    end
 end
 
 apache_module "mod_geoip" do

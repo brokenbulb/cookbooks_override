@@ -16,9 +16,17 @@ recipe "bb_php::symlink_latest","Symlink latest code pull"
 recipe "bb_php::symlink_last","Symlink last-to-latest code pull"
 recipe "bb_php::git_clone","Just clone repository to a fresh directory"
 recipe "bb_php::install_ejabberd","Install ejabberd"
+recipe "bb_php::mod_geoip","Install/enable Apache2 module GeoIP"
+recipe "bb_php::install_vhost","Install virtual host to sites-available"
 
 attribute "bb_php/ssh_keyscan_host",
   :display_name => "Host to add",
   :description => "Host to scan and add to known_hosts",
   :required => "required",
   :recipes => ["bbphp::ssh_keyscan"]
+
+attribute "bb_php/vhost_template",
+  :display_name => "Host template",
+  :description => "Host template to add (ie: superherores.conf)",
+  :required => "required",
+  :recipes => ["bbphp::vhost_template"]

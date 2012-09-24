@@ -33,6 +33,19 @@
       ],
       "calculated": false,
       "type": "string"
+    },
+    "bb_php/vhost_template": {
+      "display_name": "Host template",
+      "description": "Host template to add (ie: superherores.conf)",
+      "required": "required",
+      "recipes": [
+        "bbphp::vhost_template"
+      ],
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string"
     }
   },
   "groupings": {
@@ -46,7 +59,9 @@
     "bb_php::symlink_latest": "Symlink latest code pull",
     "bb_php::symlink_last": "Symlink last-to-latest code pull",
     "bb_php::git_clone": "Just clone repository to a fresh directory",
-    "bb_php::install_ejabberd": "Install ejabberd"
+    "bb_php::install_ejabberd": "Install ejabberd",
+    "bb_php::mod_geoip": "Install/enable Apache2 module GeoIP",
+    "bb_php::install_vhost": "Install virtual host to sites-available"
   },
   "version": "0.0.2"
 }

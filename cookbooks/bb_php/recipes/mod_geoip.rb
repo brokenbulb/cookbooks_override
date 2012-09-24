@@ -30,8 +30,7 @@ end
 
 apache_module "geoip" do
 	filename "geoip.so"
-	name "geoip"
-	conf true
+	conf false
 end
 
 rightscale_marker :end

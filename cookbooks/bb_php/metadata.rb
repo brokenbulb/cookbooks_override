@@ -6,6 +6,7 @@ long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          "0.0.2"
 
 depends "repo"
+depends "apache2"
 
 recipe "bb_php::default","Configures BB PHP Environment"
 recipe "bb_php::install_private_key","Installs private key"

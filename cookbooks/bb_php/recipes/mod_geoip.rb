@@ -28,8 +28,6 @@ if platform?("redhat", "centos", "scientific", "fedora")
 #    end
 end
 
-apache_module "geoip" do
-    conf true
-end
+apache_module "geoip"
 
 rightscale_marker :end

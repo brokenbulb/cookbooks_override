@@ -23,7 +23,6 @@ if platform?("redhat", "centos", "scientific", "fedora")
  
     template "#{node[:apache][:dir]}/geoip.conf" do
         source "geoip.conf.erb"
-        variables :apache_listen_ports => ports
         notifies :restart, resources(:service => "apache2")
         mode 0644
     end

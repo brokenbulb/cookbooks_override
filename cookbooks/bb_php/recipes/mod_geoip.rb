@@ -3,8 +3,8 @@ rightscale_marker :begin
 include_recipe "apache2"
 
 if platform?("redhat", "centos", "scientific", "fedora")
-    package "mod_geoip" do
-        package_name "mod_geoip"
+    package "geoip" do
+        package_name "geoip"
         action :install
         notifies :run, resources(:execute => "generate-module-list"), :immediately
     end

@@ -3,19 +3,24 @@ rightscale_marker :begin
 include_recipe "apache2"
 
 if platform?("redhat", "centos", "scientific", "fedora")
-    package "mod_geoip" do
-        notifies :run, resources(:execute => "generate-module-list"), :immediately
-    end
+#    package "mod_geoip" do
+#        notifies :run, resources(:execute => "generate-module-list"), :immediately
+#    end
     
 #    file "#{node[:apache][:dir]}/conf.d/geoip.conf" do
 #        action :delete
 #        backup false
 #    end
-   
+  
+	directory "/usr/local/share/GeoIP" do
+		recursive true
+		action :create
+	end
+
 	execute "copygeoipdat" do
 		filename = ::File.join(::File.dirname(__FILE__), "..", "files", "centos-misc", "GeoIP.dat")
-		creates "/usr/local/share/GeoIP.dat"
-		command "mv " + filename + " /usr/local/share/"
+		creates "/usr/local/share/GeoIP/GeoIP.dat"
+		command "mv " + filename + " /usr/local/share/GeoIP/"
 		action :run
 	end
  
@@ -26,9 +31,10 @@ if platform?("redhat", "centos", "scientific", "fedora")
     end
 end
 
-apache_module "geoip" do
-	filename "geoip.so"
-	conf false
-end
+apache_module "geoip"
+#apache_module "geoip" do
+#	filename "geoip.so"
+#	conf false
+#end
 
 rightscale_marker :end

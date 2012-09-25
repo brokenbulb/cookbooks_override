@@ -28,14 +28,16 @@ if platform?("redhat", "centos", "scientific", "fedora")
         action :run
     end
 
-    template "#{node[:apache][:dir]}/mods-available/geoip.load" do
-        Chef::Log.info "BB: Template #{node[:apache][:dir]}/mods-available/mod_geoip.load"
-        source "geoip.load.erb"
-        notifies :restart, resources(:service => "apache2")
-        mode 0644
-    end
+#    template "#{node[:apache][:dir]}/mods-available/geoip.load" do
+#        Chef::Log.info "BB: Template #{node[:apache][:dir]}/mods-available/mod_geoip.load"
+#        source "geoip.load.erb"
+#        notifies :restart, resources(:service => "apache2")
+#        mode 0644
+#    end
 end
 
-apache_module "geoip"
+apache_module "geoip" do
+	filename "geoip.so"
+end
 
 rightscale_marker :end

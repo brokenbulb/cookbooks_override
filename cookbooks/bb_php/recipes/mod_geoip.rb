@@ -36,7 +36,7 @@ if platform?("redhat", "centos", "scientific", "fedora")
     end
 end
 
-apache_module "geoip" do
+apache_module "mod_geoip" do
 	filename "mod_geoip.so"
 end
 

@@ -37,13 +37,11 @@ if platform?("redhat", "centos", "scientific", "fedora")
     template "#{node[:apache][:dir]}/mods-available/geoip.conf" do
         Chef::Log.info "BB: Template #{node[:apache][:dir]}/mods-available/geoip.conf"
         source "geoip.conf.erb"
-        notifies :restart, resources(:service => "apache2")
         mode 0644
     end
     
     execute "a2enmod geoip" do
       command "/usr/sbin/a2enmod geoip"
-      notifies :restart, resources(:service => "apache2")
     end
 end
 

@@ -27,10 +27,27 @@ if platform?("redhat", "centos", "scientific", "fedora")
         command "mv " + filename + " /usr/local/share/GeoIP/"
         action :run
     end
-
+    
+    template "#{node[:apache][:dir]}/mods-available/geoip.load" do
+        Chef::Log.info "BB: Template #{node[:apache][:dir]}/mods-available/geoip.load"
+        source "geoip.load.erb"
+        mode 0644
+    end
+    
+    template "#{node[:apache][:dir]}/mods-available/geoip.conf" do
+        Chef::Log.info "BB: Template #{node[:apache][:dir]}/mods-available/geoip.conf"
+        source "geoip.conf.erb"
+        notifies :restart, resources(:service => "apache2")
+        mode 0644
+    end
+    
+    execute "a2enmod geoip" do
+      command "/usr/sbin/a2enmod geoip"
+      notifies :restart, resources(:service => "apache2")
+    end
 end
 
-apache_module "mod_geoip"
+#apache_module "mod_geoip"
 
 #template "#{node[:apache][:dir]}/mods-available/geoip.load" do
 #    Chef::Log.info "BB: Template #{node[:apache][:dir]}/mods-available/mod_geoip.load"

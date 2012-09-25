@@ -7,7 +7,8 @@ if platform?("redhat", "centos", "scientific", "fedora")
         notifies :run, resources(:execute => "generate-module-list"), :immediately
         action :install
     end
-    
+   
+    # delete stock config
     file "#{node[:apache][:dir]}/conf.d/geoip.conf" do
         action :delete
         backup false
@@ -28,7 +29,7 @@ if platform?("redhat", "centos", "scientific", "fedora")
     end
 
     template "#{node[:apache][:dir]}/mods-available/geoip.load" do
-        Chef::Log.info "BB: Template #{node[:apache][:dir]/mods-available/geoip.load"
+        Chef::Log.info "BB: Template #{node[:apache][:dir]}/mods-available/geoip.load"
         source "geoip.load.erb"
         notifies :restart, resources(:service => "apache2")
         mode 0644

@@ -17,7 +17,7 @@ Dir.glob(packages).each do |p|
   package p do
     not_if { type == "deb" }
     source p
-	options "--skip-broken --nogpgcheck"
+    options "--skip-broken --nogpgcheck"
     action :install
   end
 end
@@ -48,6 +48,13 @@ end
 execute "copymemcached" do
   filename = ::File.join(::File.dirname(__FILE__), "..", "files", "centos-misc", "memcached.so")
   creates "/usr/lib64/php/modules/memcached.so"
+  command "mv " + filename + " /usr/lib64/php/modules/"
+  action :run
+end
+
+execute "copycouchbase10x" do
+  filename = ::File.join(::File.dirname(__FILE__), "..", "files", "centos-misc", "couchbase.1.0.x.so")
+  creates "/usr/lib64/php/modules/couchbase.1.0.x.so"
   command "mv " + filename + " /usr/lib64/php/modules/"
   action :run
 end
@@ -117,9 +124,51 @@ end
   end
 end
 
+# install geoip
+if platform?("redhat", "centos", "scientific", "fedora")
+    package "mod_geoip" do
+        action :install
+    end
+  
+    directory "/usr/local/share/GeoIP" do
+        Chef::Log.info "Create directory" 
+        recursive true
+        action :create
+    end
+
+    execute "copygeoipdat" do
+        Chef::Log.info "BB: Copy data" 
+        filename = ::File.join(::File.dirname(__FILE__), "..", "files", "centos-misc", "GeoIP.dat")
+        creates "/usr/local/share/GeoIP/GeoIP.dat"
+        command "mv " + filename + " /usr/local/share/GeoIP/"
+        action :run
+    end
+    
+    # delete stock config
+    file "#{node[:apache][:dir]}/conf.d/mod_geoip.conf" do
+        action :delete
+        backup false
+    end
+   
+    template "#{node[:apache][:dir]}/mods-available/geoip.load" do
+        Chef::Log.info "BB: Template #{node[:apache][:dir]}/mods-available/geoip.load"
+        source "geoip.load.erb"
+        mode 0644
+    end
+    
+    template "#{node[:apache][:dir]}/mods-available/geoip.conf" do
+        Chef::Log.info "BB: Template #{node[:apache][:dir]}/mods-available/geoip.conf"
+        source "geoip.conf.erb"
+        mode 0644
+    end
+    
+    execute "a2enmod geoip" do
+      command "/usr/sbin/a2enmod geoip"
+    end
+end
+
 # Restart httpd
 service "httpd" do
-  supports :restart => true
-  action :start
+  action :restart
 end
 

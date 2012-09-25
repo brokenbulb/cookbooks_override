@@ -1,6 +1,6 @@
 rightscale_marker :begin
 
-include_recipe "apache2"
+#include_recipe "apache2"
 
 if platform?("redhat", "centos", "scientific", "fedora")
     package "mod_geoip" do

@@ -30,15 +30,12 @@ if platform?("redhat", "centos", "scientific", "fedora")
 
 end
 
-apache_module "mod_geoip" do
-    filename "mod_geoip.so"
-    notifies :run, resources(:execute => 'install-correct-template'), :immediately 
-end
+apache_module "geoip"
 
-template "#{node[:apache][:dir]}/mods-available/geoip.load" do
-    Chef::Log.info "BB: Template #{node[:apache][:dir]}/mods-available/mod_geoip.load"
-    source "geoip.load.erb"
-    mode 0644
-end
+#template "#{node[:apache][:dir]}/mods-available/geoip.load" do
+#    Chef::Log.info "BB: Template #{node[:apache][:dir]}/mods-available/mod_geoip.load"
+#    source "geoip.load.erb"
+#    mode 0644
+#end
 
 rightscale_marker :end

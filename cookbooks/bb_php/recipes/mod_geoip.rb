@@ -4,7 +4,7 @@ include_recipe "apache2"
 
 if platform?("redhat", "centos", "scientific", "fedora")
     package "mod_geoip" do
-        notifies :run, resources(:execute => "generate-module-list"), :immediately
+        #notifies :run, resources(:execute => "generate-module-list"), :immediately
         action :install
     end
    
@@ -37,9 +37,7 @@ if platform?("redhat", "centos", "scientific", "fedora")
 end
 
 apache_module "geoip" do
-	name "geoip"
 	filename "geoip.so"
-	conf true
 end
 
 rightscale_marker :end

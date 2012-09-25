@@ -29,7 +29,7 @@ if platform?("redhat", "centos", "scientific", "fedora")
     end
 
     template "#{node[:apache][:dir]}/mods-available/geoip.load" do
-        Chef::Log.info "BB: Template #{node[:apache][:dir]}/mods-available/geoip.load"
+        Chef::Log.info "BB: Template #{node[:apache][:dir]}/mods-available/mod_geoip.load"
         source "geoip.load.erb"
         notifies :restart, resources(:service => "apache2")
         mode 0644

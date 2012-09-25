@@ -37,6 +37,7 @@ if platform?("redhat", "centos", "scientific", "fedora")
 end
 
 apache_module "geoip" do
+	name "geoip"
 	filename "geoip.so"
 	conf true
 end

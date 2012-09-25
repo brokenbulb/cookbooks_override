@@ -30,7 +30,7 @@ if platform?("redhat", "centos", "scientific", "fedora")
 
 end
 
-apache_module "geoip"
+apache_module "mod_geoip"
 
 #template "#{node[:apache][:dir]}/mods-available/geoip.load" do
 #    Chef::Log.info "BB: Template #{node[:apache][:dir]}/mods-available/mod_geoip.load"

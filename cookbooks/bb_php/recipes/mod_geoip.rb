@@ -1,17 +1,8 @@
 rightscale_marker :begin
 
-#include_recipe "apache2"
-
 if platform?("redhat", "centos", "scientific", "fedora")
     package "mod_geoip" do
-        #notifies :run, resources(:execute => "generate-module-list"), :immediately
         action :install
-    end
-   
-    # delete stock config
-    file "#{node[:apache][:dir]}/conf.d/geoip.conf" do
-        action :delete
-        backup false
     end
   
     directory "/usr/local/share/GeoIP" do
@@ -28,6 +19,12 @@ if platform?("redhat", "centos", "scientific", "fedora")
         action :run
     end
     
+	# delete stock config
+    file "#{node[:apache][:dir]}/conf.d/mod_geoip.conf" do
+        action :delete
+        backup false
+    end
+   
     template "#{node[:apache][:dir]}/mods-available/geoip.load" do
         Chef::Log.info "BB: Template #{node[:apache][:dir]}/mods-available/geoip.load"
         source "geoip.load.erb"
@@ -44,13 +41,5 @@ if platform?("redhat", "centos", "scientific", "fedora")
       command "/usr/sbin/a2enmod geoip"
     end
 end
-
-#apache_module "mod_geoip"
-
-#template "#{node[:apache][:dir]}/mods-available/geoip.load" do
-#    Chef::Log.info "BB: Template #{node[:apache][:dir]}/mods-available/mod_geoip.load"
-#    source "geoip.load.erb"
-#    mode 0644
-#end
 
 rightscale_marker :end

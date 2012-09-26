@@ -91,7 +91,7 @@ end
 
 # Hostname Lookups are off, so the default "Allow from localhost" doesn't seem to work
 execute "fixstatusconf" do
-  command "sed -i 's/<\/Location>/    Allow from 127.0.0.1\n<\/Location>/g' /etc/httpd/conf.d/status.conf"
+  command "sed -i 's/<\\/Location>/    Allow from 127.0.0.1\\n<\\/Location>/g' /etc/httpd/conf.d/status.conf"
   action :run
 end
 

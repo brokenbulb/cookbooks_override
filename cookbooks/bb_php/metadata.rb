@@ -26,16 +26,16 @@ attribute "bb_php/open_ports",
   :display_name => "Ports to open",
   :description => "Comma separated list of ports to open",
   :required => "required",
-  :recipes => ["bbphp::open_ports"]
+  :recipes => ["open_ports"]
 
 attribute "bb_php/ssh_keyscan_host",
   :display_name => "Host to add",
   :description => "Host to scan and add to known_hosts",
   :required => "required",
-  :recipes => ["bbphp::ssh_keyscan"]
+  :recipes => ["ssh_keyscan"]
 
 attribute "bb_php/vhost_template",
   :display_name => "Host template",
   :description => "Host template to add (ie: superherores.conf)",
   :required => "required",
-  :recipes => ["bbphp::vhost_template"]
+  :recipes => ["vhost_template"]

@@ -28,7 +28,7 @@
       "description": "Comma separated list of ports to open",
       "required": "required",
       "recipes": [
-        "bbphp::open_ports"
+        "open_ports"
       ],
       "choice": [
 
@@ -41,7 +41,7 @@
       "description": "Host to scan and add to known_hosts",
       "required": "required",
       "recipes": [
-        "bbphp::ssh_keyscan"
+        "ssh_keyscan"
       ],
       "choice": [
 
@@ -54,7 +54,7 @@
       "description": "Host template to add (ie: superherores.conf)",
       "required": "required",
       "recipes": [
-        "bbphp::vhost_template"
+        "vhost_template"
       ],
       "choice": [
 

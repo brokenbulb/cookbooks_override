@@ -14,7 +14,7 @@ execute "installpublickey" do
   command "mkdir -p /root/.ssh"
   command "chmod 0600 /root/.ssh"
   command "cat " + filename + " > /root/.ssh/id_rsa_cloud"
-  command "chmod 0600 " + filename
+  command "chmod 0600 /root/.ssh/id_rsa_cloud"
   action :run
 end
 

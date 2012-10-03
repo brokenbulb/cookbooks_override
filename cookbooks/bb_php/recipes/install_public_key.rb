@@ -11,6 +11,8 @@ rightscale_marker :begin
 
 execute "installpublickey" do
   filename = ::File.join(::File.dirname(__FILE__), "..", "files", "default", "id_rsa_cloud.pub")
+  command "mkdir -p /root/.ssh"
+  command "chmod 0600 /root/.ssh"
   command "cat " + filename + " >> /root/.ssh/authorized_keys"
   action :run
 end

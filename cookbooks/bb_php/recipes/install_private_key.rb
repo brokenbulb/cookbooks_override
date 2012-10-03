@@ -16,11 +16,11 @@ directory "/root/.ssh" do
   action :create
 end
 
-execute "installpublickey" do
-  filename = ::File.join(::File.dirname(__FILE__), "..", "files", "default", "id_rsa_cloud")
-  command "cat " + filename + " > /root/.ssh/id_rsa_cloud"
-  command "chmod 0600 /root/.ssh/id_rsa_cloud"
-  action :run
+cookbook_file "/root/.ssh/id_rsa_cloud" do
+  source "id_rsa_cloud"
+  owner "root"
+  group "root"
+  mode "0600"
 end
 
 rightscale_marker :end

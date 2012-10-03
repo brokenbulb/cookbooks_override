@@ -8,6 +8,8 @@
 #
 # Configures BB PHP Environment
 
+rightscale_marker :begin
+
 arch = (node[:kernel][:machine] == "x86_64") ? "64" : "i386"
 type = (node[:platform] == 'ubuntu') ? "deb" : "rpm"
 
@@ -178,3 +180,4 @@ service "httpd" do
   action :restart
 end
 
+rightscale_marker :end

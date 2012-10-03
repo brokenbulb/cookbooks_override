@@ -7,7 +7,8 @@
 # All rights reserved - Do Not Redistribute
 #
 # Open iptables ports 
-rs_utils_marker :begin
+
+rightscale_marker :begin
 
 rule_ports = node[:bb_php][:open_ports].split(/, ?/)
 ports.each do |port|
@@ -21,4 +22,4 @@ ports.each do |port|
   end
 end
 
-rs_utils_marker :end
+rightscale_marker :end

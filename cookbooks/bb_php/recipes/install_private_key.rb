@@ -7,6 +7,7 @@
 # All rights reserved - Do Not Redistribute
 #
 # Installs private key for accessing other instances 
+rightscale_marker :begin
 
 execute "installpublickey" do
   filename = ::File.join(::File.dirname(__FILE__), "..", "files", "default", "id_rsa_cloud")
@@ -14,3 +15,5 @@ execute "installpublickey" do
   command "chmod 0600 " + filename
   action :run
 end
+
+rightscale_marker :end

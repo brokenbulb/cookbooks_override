@@ -1,6 +1,6 @@
 {
   "name": "bb_php",
-  "description": "Installs/Configures bb_php",
+  "description": "Installs/Configures BB environment",
   "long_description": "Description\n===========\nConfigures BB PHP Environment\n\nRequirements\n============\nWorking CentOS 5 SoftLayer image\n\nAttributes\n==========\n\nUsage\n=====\n\n",
   "maintainer": "Broken Bulb Studios",
   "maintainer_email": "matt@brokenbulbstudios.com",
@@ -9,7 +9,8 @@
   },
   "dependencies": {
     "repo": ">= 0.0.0",
-    "apache2": ">= 0.0.0"
+    "apache2": ">= 0.0.0",
+    "iptables": ">= 0.0.0"
   },
   "recommendations": {
   },
@@ -22,6 +23,19 @@
   "replacing": {
   },
   "attributes": {
+    "bb_php/open_ports": {
+      "display_name": "Ports to open",
+      "description": "Comma separated list of ports to open",
+      "required": "required",
+      "recipes": [
+        "bbphp::open_ports"
+      ],
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string"
+    },
     "bb_php/ssh_keyscan_host": {
       "display_name": "Host to add",
       "description": "Host to scan and add to known_hosts",
@@ -62,7 +76,8 @@
     "bb_php::git_clone": "Just clone repository to a fresh directory",
     "bb_php::install_ejabberd": "Install ejabberd",
     "bb_php::mod_geoip": "Install/enable Apache2 module GeoIP",
-    "bb_php::install_vhost": "Install virtual host to sites-available"
+    "bb_php::install_vhost": "Install virtual host to sites-available",
+    "bb_php::open_ports": "Open ports with iptables"
   },
-  "version": "0.0.2"
+  "version": "0.0.3"
 }

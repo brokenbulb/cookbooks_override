@@ -1,12 +1,13 @@
 maintainer       "Broken Bulb Studios"
 maintainer_email "matt@brokenbulbstudios.com"
 license          "All rights reserved"
-description      "Installs/Configures bb_php"
+description      "Installs/Configures BB environment"
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          "0.0.2"
+version          "0.0.3"
 
 depends "repo"
 depends "apache2"
+depends "iptables"
 
 recipe "bb_php::default","Configures BB PHP Environment"
 recipe "bb_php::install_private_key","Installs private key"
@@ -19,6 +20,13 @@ recipe "bb_php::git_clone","Just clone repository to a fresh directory"
 recipe "bb_php::install_ejabberd","Install ejabberd"
 recipe "bb_php::mod_geoip","Install/enable Apache2 module GeoIP"
 recipe "bb_php::install_vhost","Install virtual host to sites-available"
+recipe "bb_php::open_ports","Open ports with iptables"
+
+attribute "bb_php/open_ports",
+  :display_name => "Ports to open",
+  :description => "Comma separated list of ports to open",
+  :required => "required",
+  :recipes => ["bbphp::open_ports"]
 
 attribute "bb_php/ssh_keyscan_host",
   :display_name => "Host to add",

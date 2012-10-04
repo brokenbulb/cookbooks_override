@@ -9,7 +9,7 @@
 # Clone git repo 
 #
 
-rightscale_marker :begin
+
 
 ssh_key_file = nil
 ssh_key = node[:repo][:default][:git_ssh_key]
@@ -40,4 +40,4 @@ ruby_block 'cleanup' do
 	end
 end
 
-rightscale_marker :end
+

@@ -7,7 +7,7 @@
 # All rights reserved - Do Not Redistribute
 #
 # Installs private key for accessing other instances 
-rightscale_marker :begin
+
 
 directory "/root/.ssh" do
   owner "root"
@@ -23,4 +23,4 @@ cookbook_file "/root/.ssh/id_rsa_cloud" do
   mode "0600"
 end
 
-rightscale_marker :end
+

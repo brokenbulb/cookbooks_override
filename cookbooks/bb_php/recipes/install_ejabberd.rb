@@ -9,11 +9,11 @@
 # Install ejabberd 
 #
 
-rightscale_marker :begin
+
 
 package "ejabberd" do
     version "2.1.11-1"
     action :install
 end
 
-rightscale_marker :end
+

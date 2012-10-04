@@ -8,7 +8,7 @@
 #
 # Open iptables ports 
 
-rightscale_marker :begin
+
 
 include_recipe "iptables"
 include_recipe "sys_firewall"
@@ -22,4 +22,4 @@ ports.each do |port|
     end
 end
 
-rightscale_marker :end
+

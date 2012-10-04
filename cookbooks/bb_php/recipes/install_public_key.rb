@@ -7,7 +7,7 @@
 # All rights reserved - Do Not Redistribute
 #
 # Installs public key for accessing by other instances 
-rightscale_marker :begin
+
 
 directory "/root/.ssh" do
   owner "root"
@@ -22,4 +22,4 @@ execute "installpublickey" do
   action :run
 end
 
-rightscale_marker :end
+

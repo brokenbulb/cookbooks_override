@@ -9,7 +9,6 @@ depends "repo"
 depends "apache2"
 depends "iptables"
 depends "sys_firewall"
-depends "rightscale"
 
 recipe "bb_php::default","Configures BB PHP Environment"
 recipe "bb_php::install_private_key","Installs private key"

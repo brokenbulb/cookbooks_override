@@ -8,7 +8,7 @@
 #
 # Install apache vhost to sites-available
 #
-rightscale_marker :begin
+
 
 template "/etc/httpd/sites-available/" + node[:bb_php][:vhost_template] do
 	source node[:bb_php][:vhost_template] + ".erb"
@@ -16,4 +16,4 @@ template "/etc/httpd/sites-available/" + node[:bb_php][:vhost_template] do
 	mode 0644
 end
 
-rightscale_marker :end
+

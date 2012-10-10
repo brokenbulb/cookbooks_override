@@ -22,6 +22,13 @@ recipe "bb_php::install_ejabberd","Install ejabberd"
 recipe "bb_php::mod_geoip","Install/enable Apache2 module GeoIP"
 recipe "bb_php::install_vhost","Install virtual host to sites-available"
 recipe "bb_php::open_ports","Open ports with iptables"
+recipe "bb_php::install_package","Install packages"
+
+attribute "bb_php/packages_to_install",
+  :display_name => "Packages to install", 
+  :description => "Comma separated list of ports to open",
+  :required => "required",
+  :recipes => ["bb_php::install_package"]
 
 attribute "bb_php/ports_to_open",
   :display_name => "Ports to open",

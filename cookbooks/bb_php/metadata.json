@@ -24,12 +24,12 @@
   "replacing": {
   },
   "attributes": {
-    "bb_php/open_ports": {
+    "bb_php/ports_to_open": {
       "display_name": "Ports to open",
       "description": "Comma separated list of ports to open",
       "required": "required",
       "recipes": [
-        "open_ports"
+        "bb_php::open_ports"
       ],
       "choice": [
 
@@ -42,7 +42,7 @@
       "description": "Host to scan and add to known_hosts",
       "required": "required",
       "recipes": [
-        "ssh_keyscan"
+        "bb_php::ssh_keyscan"
       ],
       "choice": [
 
@@ -55,7 +55,7 @@
       "description": "Host template to add (ie: superherores.conf)",
       "required": "required",
       "recipes": [
-        "vhost_template"
+        "bb_php::vhost_template"
       ],
       "choice": [
 

@@ -23,20 +23,20 @@ recipe "bb_php::mod_geoip","Install/enable Apache2 module GeoIP"
 recipe "bb_php::install_vhost","Install virtual host to sites-available"
 recipe "bb_php::open_ports","Open ports with iptables"
 
-attribute "bb_php/open_ports",
+attribute "bb_php/ports_to_open",
   :display_name => "Ports to open",
   :description => "Comma separated list of ports to open",
   :required => "required",
-  :recipes => ["open_ports"]
+  :recipes => ["bb_php::open_ports"]
 
 attribute "bb_php/ssh_keyscan_host",
   :display_name => "Host to add",
   :description => "Host to scan and add to known_hosts",
   :required => "required",
-  :recipes => ["ssh_keyscan"]
+  :recipes => ["bb_php::ssh_keyscan"]
 
 attribute "bb_php/vhost_template",
   :display_name => "Host template",
   :description => "Host template to add (ie: superherores.conf)",
   :required => "required",
-  :recipes => ["vhost_template"]
+  :recipes => ["bb_php::vhost_template"]

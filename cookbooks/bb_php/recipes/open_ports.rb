@@ -11,7 +11,7 @@
 if node.nil?
 	ports = [5222, 5280, 843]
 else
-	ports = node[:bb_php][:open_ports].split(/, ?/)
+	ports = node[:bb_php][:ports_to_open].split(/, ?/)
 end
 
 ports.each do |port|

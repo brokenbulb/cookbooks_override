@@ -15,7 +15,7 @@ else
 end
 
 packages.each do |pkg|
-  if pkg.index(":").nil? do
+  if pkg.index(":").nil?
     Chef::Log.info "BB: Installing package #{pkg}"
     package pkg do
       action :install

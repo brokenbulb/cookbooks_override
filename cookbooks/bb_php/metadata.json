@@ -24,6 +24,19 @@
   "replacing": {
   },
   "attributes": {
+    "bb_php/packages_to_install": {
+      "display_name": "Packages to install",
+      "description": "Comma separated list of ports to open",
+      "required": "required",
+      "recipes": [
+        "bb_php::install_package"
+      ],
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string"
+    },
     "bb_php/ports_to_open": {
       "display_name": "Ports to open",
       "description": "Comma separated list of ports to open",
@@ -78,7 +91,8 @@
     "bb_php::install_ejabberd": "Install ejabberd",
     "bb_php::mod_geoip": "Install/enable Apache2 module GeoIP",
     "bb_php::install_vhost": "Install virtual host to sites-available",
-    "bb_php::open_ports": "Open ports with iptables"
+    "bb_php::open_ports": "Open ports with iptables",
+    "bb_php::install_package": "Install packages"
   },
   "version": "0.0.3"
 }

@@ -11,7 +11,7 @@
 if node.nil?
   services = []
 else
-  services = node[:bb_php][:services_to_start].split(/, ?/)
+  services = node[:bb_php][:services_to_enable].split(/, ?/)
 end
 
 services.each do |svc|

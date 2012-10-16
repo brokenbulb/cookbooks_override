@@ -23,6 +23,13 @@ recipe "bb_php::mod_geoip","Install/enable Apache2 module GeoIP"
 recipe "bb_php::install_vhost","Install virtual host to sites-available"
 recipe "bb_php::open_ports","Open ports with iptables"
 recipe "bb_php::install_package","Install packages"
+recipe "bb_php::enable_start_services","Enable/start services"
+
+attribute "bb_php/services_to_enable",
+  :display_name => "Services to enable and start", 
+  :description => "Comma separated list of services to enable and start",
+  :required => "required",
+  :recipes => ["bb_php::enable_start_services"]
 
 attribute "bb_php/packages_to_install",
   :display_name => "Packages to install", 

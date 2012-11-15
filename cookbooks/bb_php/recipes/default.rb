@@ -69,9 +69,9 @@ execute "copycouchbase" do
 end
 
 execute "copyvirtualhost" do
-  confdir = ::File.join(::File.dirname(__FILE__), "..", "files", "config", "httpd")
+  confdir = ::File.join(::File.dirname(__FILE__), "..", "files", "config", "httpd", "*.conf")
   Dir.glob(confdir).each do |filename|
-    command "cp -f " + confdir + "/" + filename + " /etc/httpd/sites-available/"
+    command "cp -f " + filename + " /etc/httpd/sites-available/"
   end
 end
 

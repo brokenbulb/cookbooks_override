@@ -134,6 +134,42 @@ end
   end
 end
 
+# Soda Pop Panic
+directory "/var/log/soda" do
+  owner "apache"
+  group "apache"
+  mode "0755"
+  recursive true
+  action :create
+end
+
+%w{general.log sql.log}.each do |f|
+  file "/var/log/soda/#{f}" do
+    owner "apache"
+    group "apache"
+    mode "0755"
+    action :create
+  end
+end
+
+# Bake Shop Drop
+directory "/var/log/bake" do
+  owner "apache"
+  group "apache"
+  mode "0755"
+  recursive true
+  action :create
+end
+
+%w{general.log sql.log}.each do |f|
+  file "/var/log/bake/#{f}" do
+    owner "apache"
+    group "apache"
+    mode "0755"
+    action :create
+  end
+end
+
 # install geoip
 if platform?("redhat", "centos", "scientific", "fedora")
     package "mod_geoip" do

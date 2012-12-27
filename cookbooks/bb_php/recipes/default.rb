@@ -69,11 +69,23 @@ execute "copycouchbase" do
 end
 
 execute "copyvirtualhost" do
-  confdir = ::File.join(::File.dirname(__FILE__), "..", "files", "config", "httpd", "*.conf")
-  Dir.glob(confdir).each do |filename|
-    Chef::Log.info "BB: Copy virtual host " + filename
-    command "cp -f " + filename + " /etc/httpd/sites-available/"
-  end
+  filename = ::File.join(::File.dirname(__FILE__), "..", "files", "config", "httpd", "bakeshopdrop.conf")
+  Chef::Log.info "BB: Copy virtual host " + filename
+  command "cp -f " + filename + " /etc/httpd/sites-available/"
+  action :run
+end
+
+execute "copyvirtualhost" do
+  filename = ::File.join(::File.dirname(__FILE__), "..", "files", "config", "httpd", "sodapoppanic.conf")
+  Chef::Log.info "BB: Copy virtual host " + filename
+  command "cp -f " + filename + " /etc/httpd/sites-available/"
+  action :run
+end
+
+execute "copyvirtualhost" do
+  filename = ::File.join(::File.dirname(__FILE__), "..", "files", "config", "httpd", "superheroes_current.conf")
+  Chef::Log.info "BB: Copy virtual host " + filename
+  command "cp -f " + filename + " /etc/httpd/sites-available/"
   action :run
 end
 

@@ -74,6 +74,7 @@ execute "copyvirtualhost" do
     Chef::Log.info "BB: Copy virtual host " + filename
     command "cp -f " + filename + " /etc/httpd/sites-available/"
   end
+  action :run
 end
 
 execute "copyxdebugini" do

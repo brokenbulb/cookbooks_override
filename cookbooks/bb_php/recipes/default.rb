@@ -71,6 +71,7 @@ end
 execute "copyvirtualhost" do
   confdir = ::File.join(::File.dirname(__FILE__), "..", "files", "config", "httpd", "*.conf")
   Dir.glob(confdir).each do |filename|
+    Chef::Log.info "BB: Copy virtual host " + filename
     command "cp -f " + filename + " /etc/httpd/sites-available/"
   end
 end

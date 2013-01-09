@@ -76,7 +76,7 @@ execute "copyvirtualhost" do
 end
 
 execute "copyvirtualhost" do
-  filename = ::File.join(::File.dirname(__FILE__), "..", "files", "config", "httpd", "sodapoppanic.conf")
+  filename = ::File.join(::File.dirname(__FILE__), "..", "files", "config", "httpd", "soda.conf")
   Chef::Log.info "BB: Copy virtual host " + filename
   command "cp -f " + filename + " /etc/httpd/sites-available/"
   action :run

@@ -94,6 +94,11 @@ execute "copyxdebugini" do
   command "cp -f " + filename + " /etc/php.d/xdebug.ini"
 end
 
+execute "copycustomini" do
+  filename = ::File.join(::File.dirname(__FILE__), "..", "files", "config", "php", "z_custom.ini")
+  command "cp -f " + filename + " /etc/php.d/z_custom.ini"
+end
+
 execute "createphpinimemcached" do
   creates "/etc/php.d/memcached.ini"
   command "echo 'extension=memcached.so' >> /etc/php.d/memcached.ini"

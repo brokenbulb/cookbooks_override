@@ -75,6 +75,13 @@ execute "copyvirtualhost" do
   action :run
 end
 
+execute "copytuning" do
+  filename = ::File.join(::File.dirname(__FILE__), "..", "files", "config", "httpd", "tuning.conf")
+  Chef::Log.info "BB: Copy virtual host " + filename
+  command "cp -f " + filename + " /etc/httpd/conf.d/"
+  action :run
+end
+
 execute "copyvirtualhost" do
   filename = ::File.join(::File.dirname(__FILE__), "..", "files", "config", "httpd", "soda.conf")
   Chef::Log.info "BB: Copy virtual host " + filename
